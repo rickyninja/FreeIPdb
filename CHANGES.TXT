@@ -1,0 +1,51 @@
+#                _____              ___ ____     _ _
+#               |  ___| __ ___  ___|_ _|  _ \ __| | |__
+#               | |_ | '__/ _ \/ _ \| || |_) / _` | '_ \
+#               |  _|| | |  __/  __/| ||  __/ (_| | |_) |
+#               |_|  |_|  \___|\___|___|_|   \__,_|_.__/
+#
+#	CHANGES.TXT-$Name:  $-$Revision: 1.9 $ $Date: 2002/04/03 20:58:41 $ <$Author: bapril $@freeipdb.org>
+######################################################################
+
+
+0_1_1
+	-Fixed a pile of Data_Types.txt issues.
+		Dominic J. Eidson
+		Jason Slagle
+	
+0_1_2
+	-Added password to the config.pm file
+		Jason Slagle
+	-Started INSTALL.TXT,README.TXT and CHANGES.TXT
+	-rev_gen_tool.pl now created reverse files (not just STDOUT)
+		Ben April
+0_1_3
+	-Made customer name and number options.
+	-Made name of "Customer Name" field an option.
+	-Made name of "Customer Number" field an option.
+	-Converted to DBI.
+	-rev_gen_tool.pl now creates real config values for config.file.
+	-Patch from James Raftery (HTML and moved some functions.)
+	-Patch from Dave Burke (HTML fixes. Moved some HTML values to config.)
+	-ipdb_ck.pl's main pass is now recursive.
+	-if no block are found the Search function becomes recursive.
+	-The Search function can now look for addresses that are not on bit-boundaries.
+	-The Admin page is more verbose.
+	-Fixed some bugs in search.cgi
+0_1_4
+	-Piles of bug-fixes.
+	-Added report.pl
+	-Display DNS in search.
+	-Add option to toggle DNS zones on and off.
+	-Reclaim stops at region boundies.
+	-Change "= NULL" to "IS NULL" [ Martin Richard ]
+	-Patch from Stojan Rancic
+	-Dave Burke \H fix.
+	-Montgomery Newcom DBI::err fix
+	-Added import tool.
+	-Hostnames are now searchable.
+
+0_1_5
+	-Function to delete RA
+	-Function to delete Region
+	-Test for Math::BigInt

@@ -1,0 +1,212 @@
+#                _____              ___ ____     _ _
+#               |  ___| __ ___  ___|_ _|  _ \ __| | |__
+#               | |_ | '__/ _ \/ _ \| || |_) / _` | '_ \
+#               |  _|| | |  __/  __/| ||  __/ (_| | |_) |
+#               |_|  |_|  \___|\___|___|_|   \__,_|_.__/
+#
+#       TODO.TXT-$Name:  $-$Revision: 1.41 $ $Date: 2002/05/07 23:30:55 $ <$Author: bapril $@freeipdb.org>
+######################################################################
+
+0.1-5- Write an API to get blocks for scripts. (serial IP's)
+0.1-6- Reporting. 
+0.1-11- Rwhoisd...
+0.1-15- Add Sorts to the The Search Function
+0.1-32- Oracle port.
+0.1-33-	Mysql port.
+0.1.2-41- Make admin functions report something useful.
+0.1.2-54- DNS needs to understnd regions.
+0.1.2-56- CheckBlockFree Unint Value error.
+0.1.3-61- Make a more pretty error when there is no free-space in region.
+0.1.3-66- Create an config(optional) limit on searches.
+0.1.3-68- PostgreSQL triggers to prevent incorrect data in ipdb tables.
+0.1.3-70- Build an interface to edit the records of a dns zone.
+0.1.3-71- Add the MX type of DNS record.
+0.1.3-72- Add the NS type of DNS record.
+0.1.3-73- Add the HINFO type of DNS record.
+0.1.3-74- Add the LOC type of DNS record.
+0.1.3-75- Add the AAAA type of DNS record.
+0.1.3-76- Add the CNAME type of DNS record.
+0.1.3-77- Add secondarys to the dns config options.
+0.1.3-89- Clean-up HTML formatting (View source should look nice.)
+0.1.4.110- Allow users to set values on parent-blocks. (custdesc and custnum)
+0.1.4.113- Make Move Block  Check for block's children/praents in new region.
+0.1.4.117- Fix error when reclaiming last block.
+0.1.4.119- Give an option to set holdtime.
+0.1.4.120- Make the "Clear Holdtime" option a config option. 
+0.1.4.121- Make the "Assign" from the Free-list a config option.
+0.1.4.122- Add Holdtime to search results.
+0.1.4.123- Make displaying holdtime a config option.
+0.1.4.124- An interface to set/change priorities on blocks (recurssive).
+0.1.4.129- Build the much overdue journaling function.
+0.1.4.131- Get a logo.
+
+[21-07-02]
+0.1.3-78- Build a form for editing a Zone file.
+0.1.4.127- Add Delegate to types of DNS.
+0.1.4.130- Make default SOA record variables a config option.
+0.1.4.128- When editing a block from the search function submit should update
+		then return the same form with the new results.
+[20-07-02]
+0.1.4.109- Make sure reclaim is re-setting the custdesc and custnum as well.
+[05-07-02]
+0.1.4.126- Add a report to check for your reclaimed blocks being advertised on the internet by others.
+		(e.g. a former customer still using your IP space.)
+[05-03-02]
+0.1.4.125- Add option for international dates (req: Hugh Blandford)
+[04-17-02]
+0.1.4.118- Give option to Clear the holdtime on a block.
+0.1.4.116- List holdtime in "List Free Blocks"
+[04-16-02]
+0.1.4.115- Un-Init values in admin.cgi [Aaron Dudek]
+[04-12-02]
+0.1.4.114- CheckDNS called even with no DNS configged. [Hugh Blandford]
+[04-07-02]
+0.1.2-58- under admin.cgi putting a block in a region is not recurssive.(Should be)
+0.1.4.108- Batch off-load/report tool.
+0.1.2-44- in SearchResult if the result is free give option to assign it.
+0.1.4.111- Make Move Block recurssive.
+0.1.4.112- Put Footer under Recurssive Search.
+[04-05-02]
+0.1.4-106- Add a flag to searches to denote blocks with no parents
+		(e.g. allocations from your RIR)
+0.1.4.107- make rev_gen_tool check serial number first.
+[04-03-02]
+0.1.4-104- Request for (in-use/total) in reports.
+0.1.4-105- Some fixes to the DB schema (cosmetic).
+[04-02-02]
+0.1.2-38- Check for correct BigNum-Int version. [Montgomery Newcom]
+0.1.3-100- Allow for delete of RA
+0.1.3-101- Allow for delete of Region
+---======== 0.1.4 ========---
+[03-29-02]
+0.1.3-87- Make hostname a vaid search on the search page.
+0.1.3-60- add hostname to search.
+0.1.3-86- Add hostname search to the public search form.
+0.1.3-103- Make config options work on search.cgi.
+0.1.3-102- SQL tables need to "GRANT" on the ID_SEQ
+[03-27-02]
+0.1.3-95- Fix bug in display of DNSTable
+0.1.3-96- Fix Reverse DNS updating.
+0.1.3-97- Add Import Tool.
+0.1.3-98- Made the example IPv6 address more vauge
+0.1.3-99- Montgomery Newcom err fix.
+[03-09-02]
+0.1.3-94- Change "= NULL" to "IS NULL" [ Martin Richard ]
+	http://www.postgresql.org/idocs/index.php?functions-comparison.html
+0.1.3-93- Add Error checking to data-dump.
+0.1.3-92- Add Some form of text output format.
+[02-20-02]
+0.1.3-91- Added String check/clean-up for DNS addition.
+[02-19-02]
+0.1.3-90- Patch from Stojan Rancic
+[02-03-02]
+0.1.3-64- Allow delete of DNS Records.
+0.1.3-88- Fixed &UtilRegion() in report.pl
+[02-01-02]
+0.1.3-84- provide an option to require Customer Name
+0.1.3-85- provide an option to require Customer Number
+0.1.3-82- Fix bug in reclaim (anti region-traverse)
+[01-17-02]
+0.1.3-83- Fix headder errors in Data_Types.txt
+0.1.3-82- Dave Burke \H fix.
+[01-16-02]
+0.1.3-79- Reclaim Needs to stop at region boundries.
+0.1.3-81- Fix Search on cust and custdesc.
+[01-11-01]
+0.1.3-80- Fix field naming in customer search.
+[01-08-02]
+0.1.3-78- Fix Search.cgi bug.
+[01-01-02]
+0.1.3-69- Make the calling of $str->errstr consistant.
+0.1.2-53- add a dns-admin page to admin.cgi turn-zones on and off.
+[12-30-01]
+0.1-14- Add Forward DNS Functionality.
+0.1.3-67- Move All DNS records to the zone_record_table. (Anyone using the old table?)
+0.1.3-65- Make DNS an option on config.pm.
+0.1.3-63- Remove old SWIP code.
+[12-29-01]
+0.1.3-59- List reverse DNS with blocks in search.
+[12-28-01] 
+0.1.2-37- Get report.pl ported over.
+0.1.3-62- Fix big in &UtilDisplay() & &Addresses()
+
+---======== 0.1.3 ========---
+
+[12-16-01]
+0.1-7- Be sure we can have 2 regions with the same block. (e.g. 10.)
+0.1.2-51- Error trying to reclaim a block. (seems to work but errors.)
+		[I can't reproduce my own issue...]
+0.1.2-57- SetBlockP was not used as V6
+0.1.2-55- When editing a block from a search do not allow an edit that would 
+	    put overlapping IP space in the new region.
+0.1.2-50- Fix adding a block with no priority.
+[12-14-01]
+0.1.2-49- Fixed bug in Search function(s) (not showing [edit] & [relcaim] button).
+0.1.2-45- Monte Newcom's "---" fix in index and admin.
+0.1.2-48- Monte Newcom's ip2deci() fix (Now uses IPDBError and not die)
+0.1.2-47- $conn->disconnect; Now called before EVERY exit.
+0.1.2-46- Renamed all $FORM{'FORM'} to $FORM{'ACTION'}
+[12-16-01]
+0.1-34- Make ipdb_ck.pl recursive.
+0.1.2-42- Search needs to be Fully recursive.
+0.1.2-43- Search needs to find a block from an address that's in it.
+[12-08-01]
+0.1-29- Make GetBlockIdNM V6 compliant.
+[12-06-01]
+0.1-8- Say something when a block is added to a region
+	preferably go back to the admin Page.
+0.1-16- Add Toggle to the Search Function
+0.1.2-39- Fix search.cgi
+0.1.2-40- Fix drill-down in search.cgi
+[12-05-01]
+0.1.2-35- Admin.cgi will install a block on a bad-bitmask after is says no.
+0.1.2-36- Add an error message when trying to add a block that's not on a boundary.
+---======== 0.1.2 ========---
+[11-24-01]
+0.1.2-31- rev_gen_tool.pl needs to create something more than a list of zones in the config.file file.
+0.1-23- DBI interface.
+[11-19-01]
+0.1-27- Reverse DNS ought to work with regions.
+[10-30-01]
+0.1-21- Add a function to allow creation of a reverse DNS zone.
+0.1.26- some interface to add reverse DNS for any IP.
+0.1.30- Fix Search by Region.
+[10-24-01]
+0.1.28- Can't have dupe reverse entries (can have dupe forwards.
+[10-23-01]
+0.1.22- Objectify. [Scrapped for now.]
+0.1.25- Option to "create reverse zone" when allocating a block. [Not Needed]
+0.1-1- Be sure holdtime is cleared anytime a block is allocated.
+[9-28-01]
+0.1-20- Move the admin functions to a new page.
+[9-25-01]
+0.1-12- Add Reverse DNS Functionality.
+0.1-13- Serial IP Functionality.
+[9-24-01]
+0.1-3- Give users a way to set reclaims.
+0.1-2- Give users a way to define priority
+0.1-4- Give users a way to move an existing blocks into a new region.
+[9-14-01]
+0.1-9- lookup.pl now works in reverse. Feed it int and get IP.(v4)
+0.1-14- Create a config file. check in config.sample 
+
+
+=============== A note about the format of this file ===============
+Each bug/feature-request is in the following format:
+
+[Version reported]-[Unique number]- [brief description of issue]
+
+The top portion is open issues. 
+in the lower part you will see version markers:
+
+---======== 0.1.2 ========---
+
+Everything under this marker and above the next one was fixed/added
+to the 0.1.2 revision.
+
+You will also see date markers:
+
+[9-14-01]
+
+Everything under this marker and above the next one was added/changed (and committed)
+on this date.

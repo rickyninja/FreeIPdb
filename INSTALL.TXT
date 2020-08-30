@@ -1,0 +1,101 @@
+#                _____              ___ ____     _ _
+#               |  ___| __ ___  ___|_ _|  _ \ __| | |__
+#               | |_ | '__/ _ \/ _ \| || |_) / _` | '_ \
+#               |  _|| | |  __/  __/| ||  __/ (_| | |_) |
+#               |_|  |_|  \___|\___|___|_|   \__,_|_.__/
+#
+#	INSTALL.TXT-$Name:  $-$Revision: 1.12 $ $Date: 2002/03/30 02:46:52 $ <$Author: bapril $@freeipdb.org>
+######################################################################
+
+	FreeIPdb Install
+
+-Unpack the tarball:
+	It's best to do this in cgi-bin area you want the 
+	cgi portion to run from (e.g. /usr/local/httpd/cgi-bin/)
+	
+	tar -zxvf FreeIPdb-0_1_4.tar.gz
+	cd FreeIPdb-0_1_4
+	
+		or 
+
+	gzip -d FreeIPdb-0_1_4.tar.gz
+	tar -xvf FreeIPdb-0_1_4.tar
+	cd FreeIPdb-0_1_4
+
+	You may want to consider at this point a sym-link from FreeIPdb-<version> to freeipdb
+	so in the future you can just re-point the sym-link once testing on the new version 
+	is finished.
+
+-Create the database tables:
+
+	There are a few ways to go about doing this.
+	(here is one of them)
+	
+	/usr/local/pgsql/bin/createdb freeipdb
+	/usr/local/pgsql/bin/createuser freeipdb
+		(I answer no and no)
+	cat SQL/Data_Types.txt | /usr/local/pgsql/bin/psql freeipdb
+
+	If you would like to use the DNS features of FreeIPdb do:
+
+	cat SQL/DNS.sql | /usr/local/pgsql/bin/psql freeipdb
+
+	If you would like to use the Rwhois features of FreeIPdb do:
+	
+	cat SQL/Rwhois.sql | /usr/local/pgsql/bin/psql freeipdb
+	
+-Set-up the config file.
+	
+	cp config.pm.sample config.pm
+	-edit the file and set:
+		the name of the database (freeipdb used in examples)
+ 		the database host (if it's on the same system it's 127.0.0.1)
+		the username 
+		the password
+
+
+-Try it!
+point a browser @ http://<server name or ip>/<cgi-bin... maybe more>/freeipdb/admin.cgi
+
+	<Jump to README.TXT for how to drive FreeIPdb. Join the users list
+	for support (send e-mail to users-request@freeipdb.org with subscribe
+	in the body)
+
+-Setup a cron job to run the ipdb_ck.pl script every so often. (Mine is once a day)
+
+---==== Notes about upgrades ====---
+From 0.1.4 or before:
+	I don't think there are any real changes.
+
+From 0.1.3 or before:
+	the zone_record_table needs to be dropped an rebuilt.
+	It was never really used before so it should have no data.
+
+	The data in reverse_serial_table needs to move into zone_record_table
+	<You can use this code to do the move>
+
+	--- END CONVERT SCRIPT ---
+	#!/usr/local/bin/perl
+	use Pg;
+	use config;
+	use DBI;
+	%config = config::config();
+	my $conn = DBI->connect("DBI:Pg:dbname=$config{dbname};
+		host=$config{dbhost};port=$config{dbport}", 
+		"$config{dbuser}", "$config{dbpass}",);
+	my $str = $conn->prepare("SELECT TEXT,BLOCK,ZONE,INDEX FROM REVERSE_SERIAL_TABLE");
+	$str->execute;
+	if($str->err){my $err =  $str->errstr;&IPDBError(-1,"Something went wrong.:  $err"); }
+	while(@out = $str->fetchrow){
+		$str2 = $conn->prepare("INSERT INTO ZONE_RECORD_TABLE 
+			(HOSTNAME,ZONE,BLOCK,INDEX,TYPE)
+			VALUES ('$out[0]',$out[2],$out[1],$out[3],3)");
+		$str2->execute;
+		if($str2->err){my $err = $str2->errstr;&IPDBError(-1,"Something went wrong.:  $err");}
+	}
+	--- END CONVERT SCRIPT ---
+
+	The REVERSE_SERIAL_TABLE and it's sequence can now be destroyed.
+
+From 0.1.2 or before:
+	Perl::DBI is now required. at this point PG:DBD is also required.

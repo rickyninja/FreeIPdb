@@ -1,0 +1,113 @@
+#                _____              ___ ____     _ _
+#               |  ___| __ ___  ___|_ _|  _ \ __| | |__
+#               | |_ | '__/ _ \/ _ \| || |_) / _` | '_ \
+#               |  _|| | |  __/  __/| ||  __/ (_| | |_) |
+#               |_|  |_|  \___|\___|___|_|   \__,_|_.__/
+#
+#	config.pm.sample-$Name:  $-$Revision: 1.15 $ $Date: 2002/05/07 23:30:55 $ <$Author: bapril $@freeipdb.org>
+######################################################################
+
+package config;
+
+our %config =
+(
+######
+######	Database
+######
+
+	#Name of the freeipdb table
+	dbname => 'freeipdb',
+	#IP of the database server.
+	dbhost => '127.0.0.1',
+	#Username
+	dbuser => 'freeipdb',
+	#Password
+	dbpass => 'freeipdb',
+	#Database Port
+	dbport => '5432',
+	
+######
+######	Filednames
+######
+
+	# The name of the bind8 config file where the rev_gen_tool.pl will add the files 
+	# it created (should not be the main namedb.conf as this file will be overwritten
+	# everytime (Under $config{dnsdir})
+	dnsinclude => 'config.file',
+	# Use Customer Name
+	custname => 1,
+	# require value in Customer Name filed
+	custname_r => 1,
+	# Name of Customer Name filed
+	custname_f => 'Customer Name',
+	# Use Customer Num
+	custnum => 1,
+	# require value in Customer Number Field
+	custnum_r => 1,
+	# Name of Customer Number Field
+	custnum_f => 'Customer Number',
+
+#####
+#####	DNS
+#####
+
+	#DNS directory (Where does the rev_gen_tool.pl create the DNS reverse files?)
+	# should be /etc/namedb/ or something like that.
+	dnsdir => './dns/',
+	#Display DNS options
+	allowDNS => 1,
+	#SOA record config.
+	DNS_Host => 'freeipdb.org',
+	DNS_Email => 'dns.freeipdb.org',
+	DNS_Refresh => 7200,
+	DNS_Retry => 1800,
+	DNS_Expire => 604800,
+	DNS_TTL => 3600,
+
+#####
+#####	Rwhois
+#####
+
+	#Display Rwhois options
+	allowRwhois => 0, #Under development.
+	#require Rwhois on new blocks
+	requireRwhois => 0, #Under development.
+
+        #Allow Text Dump format tool
+        allowDump => 1,
+        #Check for others routing my blocks (requires Net::Telnet)
+        routeview => 0,
+
+#####
+#####	Colors/Formats
+#####
+        # Color of Header
+        headcolor => '#FF44AA',
+        # Header Text color
+        headtextcolor => '#000000',
+	# List alternating colors.
+	listcolorA => '#FFFFFF',
+	listcolorB => '#DDDDDD',
+	#Date format
+	#  MM/DD/YYYY or DD/MM/YYYY only at this point.
+	dateformat => 'MM/DD/YYYY',
+
+#####
+#####	Holdtime/Reclaim
+#####	
+
+	# Hold-time for reclaims
+	holdtime => 864000, #10 days.
+
+#####
+#####	Version
+#####
+
+	ver => 'FreeIPdb 0.3a',
+);
+
+
+sub config { return %config; }
+
+
+1;
